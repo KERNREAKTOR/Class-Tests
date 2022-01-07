@@ -20,8 +20,8 @@ public class TestingClass {
        System.out.println(mapname.GetMapName("CapitolCity"));
        System.out.println(mechIdInfo.getFullname(45));
        System.out.println(mechIdInfo.getMechclass(45));
-        System.out.println(mechIdInfo.getShortname(45));
-
+       System.out.println(mechIdInfo.getShortname(45));
+        System.out.println(mechIdInfo.getTonnage(45));
 
     }
 }
