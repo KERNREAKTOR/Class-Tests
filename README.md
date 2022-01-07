@@ -1,2 +1,2 @@
 # Class-Tests
-Test1
+New Java classes are tested here.
