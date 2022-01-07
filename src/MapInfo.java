@@ -35,7 +35,6 @@ public class MapInfo {
 
     private final Map<String, String> map = new HashMap<>();
 
-
     public MapInfo(){
 
         map.put("AlpinePeaks","Alpine Peaks");
