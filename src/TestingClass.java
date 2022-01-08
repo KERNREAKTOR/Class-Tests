@@ -1,7 +1,7 @@
+
 public class TestingClass {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Integer mechItemID =513;
 
         MechIdInfo mechIdInfo = new MechIdInfo();
@@ -21,8 +21,18 @@ public class TestingClass {
        System.out.println(mechIdInfo.getFullname(45));
        System.out.println(mechIdInfo.getMechclass(45));
        System.out.println(mechIdInfo.getShortname(45));
-       System.out.println(mechIdInfo.getTonnage(45));
+
+       //int fisize = new URL("https://www.clanwolf.net/apps/C3/client/C3-Client-6.1.2_install.exe").openConnection().getContentLength();
+       TxtProgressBar tpb = new TxtProgressBar(100,"□","■");
+
+       //System.out.println(fisize);
+       System.out.println(tpb.getcurprogress(99));
+
+
+
+
        mapname.Unload();
+       mechIdInfo.Unload();
 
     }
 }
