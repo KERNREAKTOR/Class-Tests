@@ -63,7 +63,11 @@ public class MechIdInfo {
     {
         INNERSPHERE, CLAN, UNKNOWN
     }
+    public void Unload(){
 
+        this.mechids.clear();
+
+    }
     public MechIdInfo() {
 
         this.mechids.put(1,new MechIdInfo(EFaction.INNERSPHERE,"HUNCHBACK",50,EMechclass.MEDIUM,"STANDARD","HUNCHBACK HBK-4G","HBK-4G"));
