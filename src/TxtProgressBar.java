@@ -46,6 +46,12 @@ public class TxtProgressBar {
 
     }
 
+    public void test() {
+
+
+
+    }
+
     public String getcurprogress(int currentvalue) {
         int curpercent = currentvalue *100 / this.maxvalue;
         StringBuilder txtbar = new StringBuilder();
