@@ -23,7 +23,10 @@ public class TestingClass {
        System.out.println(mechIdInfo.getShortname(45));
        System.out.println(mechIdInfo.getTonnage(45));
        mapname.Unload();
-       mechIdInfo.Unload();
+       TxtProgressBar tpb = new TxtProgressBar(100,"_","-");
+
+        System.out.println(tpb.getcurprogress(20));
+
 
     }
 }
