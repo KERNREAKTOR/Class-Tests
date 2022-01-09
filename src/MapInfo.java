@@ -89,5 +89,4 @@ public class MapInfo {
         this.map.clear();
 
     }
-
 }
