@@ -33,9 +33,9 @@
 
 public class TxtProgressBar {
 
-    int maxvalue;
-    String emptybar;
-    String filledbar;
+    private int maxvalue;
+    private String emptybar;
+    private String filledbar;
 
 
     public TxtProgressBar(int maxvalue, String emptybar, String filledbar) {
