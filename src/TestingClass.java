@@ -23,9 +23,9 @@ public class TestingClass {
        System.out.println(mechIdInfo.getShortname(45));
        System.out.println(mechIdInfo.getTonnage(45));
        mapname.Unload();
-       TxtProgressBar tpb = new TxtProgressBar(100,"_","-");
+       TxtProgressBar tpb = new TxtProgressBar(154852280,"□","■");
 
-        System.out.println(tpb.getcurprogress(20));
+        System.out.println(tpb.getcurprogress(67645L*1024));
 
 
     }

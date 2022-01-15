@@ -52,8 +52,8 @@ public class TxtProgressBar {
 
     }
 
-    public String getcurprogress(int currentvalue) {
-        int curpercent = currentvalue *100 / this.maxvalue;
+    public String getcurprogress(Long currentvalue) {
+        Long curpercent = currentvalue *100 / this.maxvalue;
         StringBuilder txtbar = new StringBuilder();
 
         if(curpercent <10) {
@@ -62,11 +62,11 @@ public class TxtProgressBar {
 
         } else {
 
-            txtbar.append(String.valueOf(this.filledbar).repeat( curpercent / 10));
-            txtbar.append(String.valueOf(this.emptybar).repeat(10 - (curpercent / 10)));
+            txtbar.append(String.valueOf(this.filledbar).repeat( curpercent.intValue() / 10));
+            txtbar.append(String.valueOf(this.emptybar).repeat(10 - (curpercent.intValue() / 10)));
 
         }
-
+        System.out.println(curpercent);
         return txtbar.toString();
     }
 }
