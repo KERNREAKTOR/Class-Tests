@@ -5,7 +5,7 @@ public class TestingClass {
         Integer mechItemID =513;
 
         MechIdInfo mechIdInfo = new MechIdInfo();
-        //ein weiterer test
+        //ein weiterer test 125549
         Integer tonnage = mechIdInfo.getTonnage(mechItemID); // 90
         String faction = mechIdInfo.getFaction(mechItemID).toString(); //CLAN
         String chassis = mechIdInfo.getChassis(mechItemID);//SUPERNOVA
