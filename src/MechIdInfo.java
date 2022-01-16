@@ -24,6 +24,8 @@
  * Copyright (c) 2001-2022, ClanWolf.net                            |
  * ---------------------------------------------------------------- |
  */
+package net.clanwolf.starmap.client.mwo;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,11 +45,11 @@ public class MechIdInfo {
     private String chassis;
     private Integer tonnage;
     private EMechclass mechclass;
-    private String varianttype;
+    private EVariantType varianttype;
     private String fullname;
     private String shortname;
 
-    private MechIdInfo(EFaction faction, String chassis, Integer tonnage, EMechclass mechclass, String varianttype, String fullname, String shortname) {
+    private MechIdInfo(EFaction faction, String chassis, Integer tonnage, EMechclass mechclass, EVariantType varianttype, String fullname, String shortname) {
         this.faction = faction;
         this.chassis = chassis;
         this.tonnage = tonnage;
@@ -65,6 +67,14 @@ public class MechIdInfo {
         LIGHT, MEDIUM,	HEAVY,	ASSAULT, UNKNOWN
     }
 
+    /**
+     * Gibt die Variante des Mech's an.
+     */
+    public enum EVariantType {
+
+        CHAMPION, HERO, SPECIAL, STANDARD, UNKNOWN
+
+    }
     /**
      * Die Fraktionen die es in MWO gibt.
      */
@@ -1001,9 +1011,9 @@ public class MechIdInfo {
      * @param MechItemID Die (int) MechItemId von der MWO Api.
      * @return Gibt die (String) Variant zurück.
      */
-    public String getVarianttype(Integer MechItemID) {
+    public EVariantType getVarianttype(Integer MechItemID) {
 
-        return IsValidId(MechItemID) ? this.mechids.get(MechItemID).varianttype : this.msginvalidid;
+        return IsValidId(MechItemID) ? this.mechids.get(MechItemID).varianttype : EVariantType.UNKNOWN;
 
     }
 
