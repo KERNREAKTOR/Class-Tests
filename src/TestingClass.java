@@ -13,6 +13,8 @@ public class TestingClass {
         String varianttype = mechIdInfo.getVarianttype(mechItemID);//HERO
         String fullname = mechIdInfo.getFullname(mechItemID);//BOILER
         String shortname = mechIdInfo.getShortname(mechItemID);// SNV-BR
+        
+        //nur ein test
 
 
        MapInfo mapname = new MapInfo();
