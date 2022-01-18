@@ -1,2 +1,2 @@
 # Class-Tests
-New Java classes are tested here.
+Hier werden neue Klassen getested ;-)
