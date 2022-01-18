@@ -10,7 +10,7 @@ public class TestingClass {
         String faction = mechIdInfo.getFaction(mechItemID).toString(); //CLAN
         String chassis = mechIdInfo.getChassis(mechItemID);//SUPERNOVA
         String mechclass = mechIdInfo.getMechclass(mechItemID).toString();//ASSAULT
-        String varianttype = mechIdInfo.getVarianttype(mechItemID);//HERO
+        MechIdInfo.EVariantType varianttype = mechIdInfo.getVarianttype(mechItemID);//HERO
         String fullname = mechIdInfo.getFullname(mechItemID);//BOILER
         String shortname = mechIdInfo.getShortname(mechItemID);// SNV-BR
         
