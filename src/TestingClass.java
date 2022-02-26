@@ -1,34 +1,51 @@
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
+
 public class TestingClass {
 
     public static void main(String[] args)
     {
-        Integer mechItemID =513;
+        //LBK PRIME MechItemID 470
+        //F = 22
+        //7 = 7
+        String MechBuild = "AF7D<:@1|XRph0mQ7|<C|XR|XR|XRqh0kQ7|<C|XR|XR|lR|l^rX0JR7|<C|<CsX0NR7|<C|<Ctl0oQ7ul00R7vB0iQ7w404040";
 
-        MechIdInfo mechIdInfo = new MechIdInfo();
-        //ein weiterer test 987-6564232
-        Integer tonnage = mechIdInfo.getTonnage(mechItemID); // 90
-        String faction = mechIdInfo.getFaction(mechItemID).toString(); //CLAN
-        String chassis = mechIdInfo.getChassis(mechItemID);//SUPERNOVA
-        String mechclass = mechIdInfo.getMechclass(mechItemID).toString();//ASSAULT
-        MechIdInfo.EVariantType varianttype = mechIdInfo.getVarianttype(mechItemID);//HERO
-        String fullname = mechIdInfo.getFullname(mechItemID);//BOILER
-        String shortname = mechIdInfo.getShortname(mechItemID);// SNV-BR
-        
-        //nur ein test
+        MechIdInfo mymech = new MechIdInfo("AF7D<:@1|XRph0mQ7|<C|XR|XR|XRqh0kQ7|<C|XR|XR|lR|l^rX0JR7|<C|<CsX0NR7|<C|<Ctl0oQ7ul00R7vB0iQ7w404040");
+
+        System.out.println(mymech.getFullname());
+        System.out.println(mymech.getMechCost());
+        System.out.println(mymech.getRepairCost(50));
 
 
-       MapInfo mapname = new MapInfo();
+        if(MechBuild.charAt(0) == 'A'){
 
-       System.out.println(mapname.GetMapName("CapitolCity"));
-       System.out.println(mechIdInfo.getFullname(45));
-       System.out.println(mechIdInfo.getMechclass(45));
-       System.out.println(mechIdInfo.getShortname(45));
-       System.out.println(mechIdInfo.getTonnage(45));
-       mapname.Unload();
-       TxtProgressBar tpb = new TxtProgressBar(100,"_","-");
+            char [] Base24IndexTable = new char[64];
 
-        System.out.println(tpb.getcurprogress(20));
+            for (int i = 48; i < 112; i++) {
 
+                Base24IndexTable[i-48] = (char) (i);
 
+            }
+
+            if((new String(Base24IndexTable).indexOf(MechBuild.charAt(1))) >= 0 && (new String(Base24IndexTable).indexOf(MechBuild.charAt(2))) >= 0){
+
+                char firstchar = (char) new String(Base24IndexTable).indexOf(MechBuild.charAt(1));
+                char secondchar = (char) new String(Base24IndexTable).indexOf(MechBuild.charAt(2));
+
+                Integer MechItemID = firstchar + (secondchar * 64);
+                MechIdInfo mii = new MechIdInfo(16);
+
+                String[] splitter = MechBuild.split( "p"  );
+                String[] weaponcentertorso = splitter[0].split("\\|");
+
+                System.out.println(mii.getFullname());
+                System.out.println(mii.getMechCost());
+                System.out.println(weaponcentertorso[1]);
+                System.out.println(weaponcentertorso.length);
+
+            }
+        }
     }
 }
