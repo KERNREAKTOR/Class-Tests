@@ -1,10 +1,7 @@
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -12,8 +9,6 @@ import java.util.Objects;
 
 public class OnlineStatus {
 
-
-    private static final Logger LOG = LoggerFactory.getLogger(OnlineStatus.class);
 
     public OnlineStatus() {
     }
@@ -54,10 +49,12 @@ public class OnlineStatus {
                         curMode.set(i, users.get(i).getOnlineStatus());
 
                         if (Objects.equals(users.get(i).getOnlineStatus(), "❎")) {
-                            LOG.info("🔴 " + users.get(i).getUserName() + " ist offline");
+                            System.out.println("🔴 " + users.get(i).getUserName() + " ist offline");
+                            //LOG.info();
                             addToDB(users.get(i).getUserName(), users.get(i).getOnlineStatus(), now.format(formatter), users.get(i).getPricePerMinute(), "");
                         } else {
-                            LOG.info("🟢 " + users.get(i).getUserName() + " ist online: " + users.get(i).getUrl() + " (" + users.get(i).getPricePerMinute() + " per Minute) [" + lastSeen.get(i) + "]");
+                            System.out.println("🟢 " + users.get(i).getUserName() + " ist online: " + users.get(i).getUrl() + " (" + users.get(i).getPricePerMinute() + " per Minute) [" + lastSeen.get(i) + "]");
+                            //LOG.info("🟢 " + users.get(i).getUserName() + " ist online: " + users.get(i).getUrl() + " (" + users.get(i).getPricePerMinute() + " per Minute) [" + lastSeen.get(i) + "]");
                             addToDB(users.get(i).getUserName(), users.get(i).getOnlineStatus(), now.format(formatter), users.get(i).getPricePerMinute(), lastSeen.get(i));
                         }
                     }
@@ -72,7 +69,7 @@ public class OnlineStatus {
         }
     }
 
-    private static void addToDB(String username, String status, String date, String pricePerMinute, String lastSeen) throws SQLException, IOException {
+    private static void addToDB(String username, String status, String date, String pricePerMinute, String lastSeen) throws IOException {
 //        String url = "jdbc:mariadb://localhost:3306/test";
 //        String user = "root";
 //        String password = "Bellin#18292";
