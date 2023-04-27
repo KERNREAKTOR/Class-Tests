@@ -1,14 +1,9 @@
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -77,27 +72,32 @@ public class OnlineStatus {
         }
     }
 
-    private static void addToDB(String username, String status, String date, String pricePerMinute, String lastSeen) throws SQLException {
-        String url = "jdbc:mariadb://localhost:3306/test";
-        String user = "root";
-        String password = "Bellin#18292";
-        Connection conn;
-
-        try {
-            conn = DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        String sql = "INSERT INTO currentstatus (Status, Username, Date, PricePerMinute, LastSeen) VALUES (?, ?, ?, ?, ?)";
-        PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, status);
-        statement.setString(2, username);
-        statement.setString(3, date);
-        statement.setString(4, pricePerMinute);
-        statement.setString(5, lastSeen);
-        statement.executeUpdate();
-        conn.close();
+    private static void addToDB(String username, String status, String date, String pricePerMinute, String lastSeen) throws SQLException, IOException {
+//        String url = "jdbc:mariadb://localhost:3306/test";
+//        String user = "root";
+//        String password = "Bellin#18292";
+//        Connection conn;
+//
+//        try {
+//            conn = DriverManager.getConnection(url, user, password);
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        String sql = "INSERT INTO currentstatus (Status, Username, Date, PricePerMinute, LastSeen) VALUES (?, ?, ?, ?, ?)";
+//        PreparedStatement statement = conn.prepareStatement(sql);
+//        statement.setString(1, status);
+//        statement.setString(2, username);
+//        statement.setString(3, date);
+//        statement.setString(4, pricePerMinute);
+//        statement.setString(5, lastSeen);
+//        statement.executeUpdate();
+//        conn.close();
+        String filename = "C:\\Temp\\skyprivate\\test.log";
+        PrintWriter w = new PrintWriter(new FileWriter(filename, true));
+        w.println(status + "|" + date + "|" + username + "|" + pricePerMinute + "|" + lastSeen);
+        w.flush();
+        w.close();
     }
 
     private static StringBuilder getStringBuilder(String url) throws IOException {
