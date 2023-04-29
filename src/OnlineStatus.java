@@ -22,12 +22,6 @@ public class OnlineStatus {
         ArrayList<String> urls = new ArrayList<>();
         urls.add("https://profiles.skyprivate.com/models/1s5qw-scofty-s.html");
         urls.add("https://profiles.skyprivate.com/models/1me83-emeralda.html");
-        urls.add("https://profiles.skyprivate.com/models/1m0in-carolay.html");
-        urls.add("https://profiles.skyprivate.com/models/1r5te-lia-evans.html");
-        urls.add("https://profiles.skyprivate.com/models/n4qx-alessandra.html");
-        urls.add("https://profiles.skyprivate.com/models/1ssyt-nayi-nayi.html");
-        urls.add("https://profiles.skyprivate.com/models/1t4je-samantha-evans.html");
-        urls.add("https://profiles.skyprivate.com/models/1hujv-lara-savage.html");
 
         ArrayList<String> curMode = new ArrayList<>(), lastSeen = new ArrayList<>();
 
