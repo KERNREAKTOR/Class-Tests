@@ -1,15 +1,9 @@
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -18,7 +12,7 @@ import java.util.Objects;
 public class OnlineStatus {
 
 
-    private static final Logger LOG = LoggerFactory.getLogger(OnlineStatus.class);
+    // private static final Logger LOG = LoggerFactory.getLogger(OnlineStatus.class);
 
     public OnlineStatus() {
     }
@@ -59,10 +53,12 @@ public class OnlineStatus {
                         curMode.set(i, users.get(i).getOnlineStatus());
 
                         if (Objects.equals(users.get(i).getOnlineStatus(), "❎")) {
-                            LOG.info("🔴 " + users.get(i).getUserName() + " ist offline");
+                            System.out.println(now.format(formatter) + "🔴 " + users.get(i).getUserName() + " ist offline");
+                            // LOG.info("🔴 " + users.get(i).getUserName() + " ist offline");
                             addToDB(users.get(i).getUserName(), users.get(i).getOnlineStatus(), now.format(formatter), users.get(i).getPricePerMinute(), "");
                         } else {
-                            LOG.info("🟢 " + users.get(i).getUserName() + " ist online: " + users.get(i).getUrl() + " (" + users.get(i).getPricePerMinute() + " per Minute) [" + lastSeen.get(i) + "]");
+                            System.out.println(now.format(formatter) + "🟢 " + users.get(i).getUserName() + " ist online: " + users.get(i).getUrl() + " (" + users.get(i).getPricePerMinute() + " per Minute) [" + lastSeen.get(i) + "]");
+                            //LOG.info("🟢 " + users.get(i).getUserName() + " ist online: " + users.get(i).getUrl() + " (" + users.get(i).getPricePerMinute() + " per Minute) [" + lastSeen.get(i) + "]");
                             addToDB(users.get(i).getUserName(), users.get(i).getOnlineStatus(), now.format(formatter), users.get(i).getPricePerMinute(), lastSeen.get(i));
                         }
                     }
@@ -77,27 +73,14 @@ public class OnlineStatus {
         }
     }
 
-    private static void addToDB(String username, String status, String date, String pricePerMinute, String lastSeen) throws SQLException {
-        String url = "jdbc:mariadb://localhost:3306/test";
-        String user = "root";
-        String password = "Bellin#18292";
-        Connection conn;
-
-        try {
-            conn = DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        String sql = "INSERT INTO currentstatus (Status, Username, Date, PricePerMinute, LastSeen) VALUES (?, ?, ?, ?, ?)";
-        PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, status);
-        statement.setString(2, username);
-        statement.setString(3, date);
-        statement.setString(4, pricePerMinute);
-        statement.setString(5, lastSeen);
-        statement.executeUpdate();
-        conn.close();
+    private static void addToDB(String username, String status, String date, String pricePerMinute, String lastSeen) throws IOException {
+        LocalDate heute = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        String filename = "C:\\skyprivate\\" + username + "_" + heute.format(formatter) + ".log";
+        PrintWriter w = new PrintWriter(new FileWriter(filename, true));
+        w.println(status + "|" + date + "|" + username + "|" + pricePerMinute + "|" + lastSeen);
+        w.flush();
+        w.close();
     }
 
     private static StringBuilder getStringBuilder(String url) throws IOException {
